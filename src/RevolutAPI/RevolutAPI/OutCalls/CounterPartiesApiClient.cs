@@ -1,9 +1,6 @@
-﻿using RevolutAPI.Models;
-using System;
+﻿using RevolutAPI.Models.Counterparties;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using RevolutAPI.Models.Counterparties;
 
 namespace RevolutAPI.OutCalls
 {
@@ -45,6 +42,5 @@ namespace RevolutAPI.OutCalls
             string endpoit = "/counterparty/" + id;
             return await _apiClient.Delete(endpoit);
         }
-
     }
 }

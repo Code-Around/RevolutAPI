@@ -26,7 +26,7 @@ namespace RevolutAPI.Models.Payment
             public string CategoryCode { get; set; }
             public string Country { get; set; }
         }
-    
+
         public class LegData
         {
             public string LegId { get; set; }
@@ -38,11 +38,11 @@ namespace RevolutAPI.Models.Payment
             public double BillAmount { get; set; }
             public string BillCurrency { get; set; }
         }
-        
+
         public string Id { get; set; }
         public string Type { get; set; }
         public string RequestId { get; set; }
-        public string State { get; set; } // TODO: try parse as enum 
+        public string State { get; set; } // TODO: try parse as enum
         public string ReasonCode { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

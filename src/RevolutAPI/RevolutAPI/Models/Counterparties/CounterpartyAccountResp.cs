@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RevolutAPI.Models.Counterparties
+﻿namespace RevolutAPI.Models.Counterparties
 {
     public class CounterpartyAccountResp
     {

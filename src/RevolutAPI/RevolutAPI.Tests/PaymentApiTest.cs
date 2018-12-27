@@ -1,11 +1,10 @@
-﻿using System;
-using System.Net.Http;
+﻿using RevolutAPI.Models.Account;
 using RevolutAPI.Models.Payment;
-using RevolutAPI.Models.Account;
-using RevolutAPI.Models.Counterparties;
 using RevolutAPI.OutCalls;
-using Xunit;
+using System;
 using System.Linq;
+using System.Net.Http;
+using Xunit;
 
 namespace RevolutAPI.Tests
 {
@@ -127,7 +126,7 @@ namespace RevolutAPI.Tests
                 accounts.Remove(accountResp1);
                 accountResp2 = accounts.Where(x => x.Currency == currency).First();
             }
-            catch(InvalidOperationException ex)
+            catch (InvalidOperationException ex)
             {
                 throw new Exception($"Missing account with {currency} currency");
             }

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using NLog;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using NLog;
-using RevolutAPI.Models.Payment;
-using Newtonsoft.Json.Serialization;
-
-using Newtonsoft.Json.Linq;
 
 namespace RevolutAPI.OutCalls
 {
@@ -24,7 +19,7 @@ namespace RevolutAPI.OutCalls
         public RevolutApiClient(string endpoint, string token) : this(new HttpClient(), endpoint, token)
         {
         }
-        
+
         public RevolutApiClient(HttpClient httpClient, string endpoint, string token)
         {
             SetUp(endpoint, token, httpClient);
@@ -36,7 +31,7 @@ namespace RevolutAPI.OutCalls
 
         public void SetUp(string endpoint, string token, HttpClient httpClient = null)
         {
-            if(httpClient == null)
+            if (httpClient == null)
             {
                 _httpClient = new HttpClient();
             }
@@ -48,7 +43,6 @@ namespace RevolutAPI.OutCalls
             _endpoint = endpoint;
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
 
             _jsonSerializerSettings = new JsonSerializerSettings
             {
@@ -68,12 +62,11 @@ namespace RevolutAPI.OutCalls
                 var response = await _httpClient.GetAsync(_endpoint + url);
                 if (response.Content != null)
                 {
-                    responseContent = await response.Content.ReadAsStringAsync();    
+                    responseContent = await response.Content.ReadAsStringAsync();
                 }
                 if (response.IsSuccessStatusCode)
                 {
                     _logger.Info(responseContent);
-
 
                     return JsonConvert.DeserializeObject<T>(responseContent, _jsonSerializerSettings);
                 }
@@ -88,7 +81,7 @@ namespace RevolutAPI.OutCalls
             }
             return default(T);
         }
-        
+
         public async Task<T> Post<T>(string url, object obj)
         {
             string responseContent = "";
@@ -98,7 +91,7 @@ namespace RevolutAPI.OutCalls
                 var response = await _httpClient.PostAsync(_endpoint + url, new StringContent(postData, Encoding.UTF8, "application/json"));
                 if (response.Content != null)
                 {
-                    responseContent = await response.Content.ReadAsStringAsync();    
+                    responseContent = await response.Content.ReadAsStringAsync();
                 }
                 if (response.IsSuccessStatusCode)
                 {
@@ -115,7 +108,7 @@ namespace RevolutAPI.OutCalls
             }
             return default(T);
         }
-        
+
         public async Task<T> Put<T>(string url, object obj)
         {
             string responseContent = "";
@@ -125,7 +118,7 @@ namespace RevolutAPI.OutCalls
                 var response = await _httpClient.PutAsync(_endpoint + url, new StringContent(postData, Encoding.UTF8, "application/json"));
                 if (response.Content != null)
                 {
-                    responseContent = await response.Content.ReadAsStringAsync();    
+                    responseContent = await response.Content.ReadAsStringAsync();
                 }
                 if (response.IsSuccessStatusCode)
                 {
@@ -142,7 +135,7 @@ namespace RevolutAPI.OutCalls
             }
             return default(T);
         }
-        
+
         public async Task<T> Delete<T>(string url)
         {
             string responseContent = "";
@@ -161,11 +154,11 @@ namespace RevolutAPI.OutCalls
             }
             catch (Exception ex)
             {
-                
                 _logger.Error(ex);
             }
             return default(T);
         }
+
         public async Task<bool> Delete(string url)
         {
             string responseContent = "";

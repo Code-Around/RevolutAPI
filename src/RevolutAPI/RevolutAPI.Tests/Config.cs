@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace RevolutAPI.Tests
+﻿namespace RevolutAPI.Tests
 {
     public class Config
     {
@@ -9,8 +7,10 @@ namespace RevolutAPI.Tests
 
         // used in payments tests
         public static readonly string ACCOUNT_ID = "";
+
         public static readonly string COUNTERPARTY_ID = "";
         public static readonly string COUNTERPARTY_ACCOUNT_ID = "";
+
         // currency must match for both ACCOUNT_ID and COUNTERPARTY_ACCOUNT_ID
         public static readonly string CURRENCY = "EUR";
     }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using RevolutAPI.Models.Payment;
+﻿using RevolutAPI.Models.Payment;
 using RevolutAPI.Tests.Utils;
 using Xunit;
 
@@ -25,13 +21,13 @@ namespace RevolutAPI.Tests
                 Description = "description"
             };
         }
-       
+
         [Fact]
         public void Test_TrasferReq_ValidModel()
         {
             Assert.True(ModelValidator.IsValid(BASE_MODEL));
         }
-        
+
         [Fact]
         public void Test_TrasferReq_RequestId_ValidLength()
         {
@@ -39,7 +35,7 @@ namespace RevolutAPI.Tests
             BASE_MODEL.RequestId = requestId;
             Assert.True(ModelValidator.IsValid(BASE_MODEL));
         }
-        
+
         [Fact]
         public void Test_TrasferReq_RequestId_InvalidLength()
         {

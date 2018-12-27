@@ -1,19 +1,19 @@
-﻿using System;
+﻿using RevolutAPI.Models.Account;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RevolutAPI.Models.Account;
 
 namespace RevolutAPI.OutCalls
 {
     public class AccountApiClient
     {
         private readonly IRevolutApiClient _apiClient;
-        
+
         public AccountApiClient(IRevolutApiClient client)
         {
             _apiClient = client;
         }
-        
+
         public async Task<List<GetAccountResp>> GetAccounts()
         {
             string endpoint = "/accounts";
@@ -26,7 +26,7 @@ namespace RevolutAPI.OutCalls
             {
                 throw new ArgumentException();
             }
-            
+
             string endpoint = "/accounts/" + id;
             return await _apiClient.Get<GetAccountResp>(endpoint);
         }
@@ -37,7 +37,7 @@ namespace RevolutAPI.OutCalls
             {
                 throw new ArgumentException();
             }
-            
+
             string endpoint = "/accounts/" + id + "/bank-details";
             return await _apiClient.Get<List<GetAccountDetailsResp>>(endpoint);
         }

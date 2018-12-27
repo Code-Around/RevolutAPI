@@ -10,14 +10,14 @@ namespace RevolutAPI.Models.Account
         public string Country { get; set; }
         public string PostCode { get; set; }
     }
-    
+
     public class EstimatedTime
     {
         public string Unit { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
     }
-    
+
     public class GetAccountDetailsResp
     {
         public string Iban { get; set; }

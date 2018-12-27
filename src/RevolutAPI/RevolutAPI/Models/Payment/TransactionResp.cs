@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace RevolutAPI.Models.Payment
 {
-   
     public class TransactionResp
     {
         public string Id { get; set; }
@@ -16,6 +15,5 @@ namespace RevolutAPI.Models.Payment
         public DateTime CompletedAt { get; set; }
         public string Reference { get; set; }
         public List<LegData> Legs { get; set; }
-        
     }
 }

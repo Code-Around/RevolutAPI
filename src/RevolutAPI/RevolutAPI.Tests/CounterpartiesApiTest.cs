@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿using RevolutAPI.Models.Counterparties;
 using RevolutAPI.OutCalls;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
-using RevolutAPI.Models.Counterparties;
+using Xunit;
 
 namespace RevolutAPI.Tests
 {
@@ -42,7 +41,7 @@ namespace RevolutAPI.Tests
             string phone = "+4412345678908";
 
             var counterparties = await _counterpartiesApiClient.GetCounterparties();
-            if(counterparties.Exists(x => x.Phone == phone))
+            if (counterparties.Exists(x => x.Phone == phone))
             {
                 throw new Exception($"Counterparty with {phone} alredy exsists");
             }
@@ -101,7 +100,7 @@ namespace RevolutAPI.Tests
             {
                 counterpartyId = counterparties.Find(x => x.Phone == phone).Id;
             }
-            catch(NullReferenceException)
+            catch (NullReferenceException)
             {
                 AddCounterpartyReq req = new AddCounterpartyReq
                 {
@@ -119,7 +118,5 @@ namespace RevolutAPI.Tests
             bool resp = await _counterpartiesApiClient.DeleteCounterparty(counterpartyId);
             Assert.True(resp);
         }
-
-
     }
 }

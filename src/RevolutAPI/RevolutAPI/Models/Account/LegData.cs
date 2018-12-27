@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RevolutAPI.Models.Account
+﻿namespace RevolutAPI.Models.Account
 {
     public class LegData
     {

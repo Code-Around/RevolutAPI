@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RevolutAPI.Models.Counterparties
+﻿namespace RevolutAPI.Models.Counterparties
 {
     public class AddNonRevolutCounterpartyReq
     {
@@ -34,7 +30,5 @@ namespace RevolutAPI.Models.Counterparties
         public string Email { get; set; }
         public string Phone { get; set; }
         public AddressData Address { get; set; }
-
-
     }
 }

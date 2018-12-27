@@ -1,15 +1,14 @@
-﻿using System;
+﻿using RevolutAPI.Models.Payment;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using RevolutAPI.Models.Payment;
 
 namespace RevolutAPI.OutCalls
 {
     public class PaymentApiClient
     {
         private readonly IRevolutApiClient _apiClient;
-        
+
         public PaymentApiClient(IRevolutApiClient client)
         {
             _apiClient = client;
@@ -26,6 +25,7 @@ namespace RevolutAPI.OutCalls
             string endpoint = "/pay";
             return await _apiClient.Post<CreatePaymentResp>(endpoint, req);
         }
+
         /// <summary>
         /// SchedulePayment can only accept dates whitout times
         /// </summary>
@@ -43,14 +43,14 @@ namespace RevolutAPI.OutCalls
             {
                 throw new ArgumentException();
             }
-            
+
             string endpoint = "/transaction/" + transactionId;
             return await _apiClient.Get<CheckPaymentStatusResp>(endpoint);
         }
 
         public async Task<CheckPaymentStatusResp> CheckPaymentStatusByRequestId(string requestId)
         {
-            if(string.IsNullOrEmpty(requestId))
+            if (string.IsNullOrEmpty(requestId))
             {
                 throw new ArgumentException();
             }
@@ -65,7 +65,7 @@ namespace RevolutAPI.OutCalls
             {
                 throw new ArgumentNullException(nameof(from));
             }
-            
+
             if (string.IsNullOrEmpty(type))
             {
                 throw new ArgumentException("type parameter cannot be null or empty");
@@ -83,7 +83,7 @@ namespace RevolutAPI.OutCalls
             {
                 endpoint += "&counterparty=" + counterparty;
             }
-            
+
             return await _apiClient.Get<List<TransactionResp>>(endpoint);
         }
 
@@ -91,36 +91,35 @@ namespace RevolutAPI.OutCalls
         {
             string endpoint = $"/transactions?";
 
-            if(!string.IsNullOrEmpty(from))
+            if (!string.IsNullOrEmpty(from))
             {
                 endpoint += $"from={from}&";
             }
 
-            if(!string.IsNullOrEmpty(to))
+            if (!string.IsNullOrEmpty(to))
             {
                 endpoint += $"to={to}&";
             }
 
-            if(!string.IsNullOrEmpty(counterparty))
+            if (!string.IsNullOrEmpty(counterparty))
             {
                 endpoint += $"counterparty={counterparty}&";
             }
 
-            if(count > 0)
+            if (count > 0)
             {
                 endpoint += $"count={count}";
             }
 
-            if(!string.IsNullOrEmpty(type))
+            if (!string.IsNullOrEmpty(type))
             {
                 endpoint += $"type={type}&";
             }
 
-            if(endpoint[endpoint.Length - 1] == '?' || endpoint[endpoint.Length - 1] == '&')
+            if (endpoint[endpoint.Length - 1] == '?' || endpoint[endpoint.Length - 1] == '&')
             {
                 endpoint = endpoint.Remove(endpoint.Length - 1);
             }
-
 
             return await _apiClient.Get<List<TransactionResp>>(endpoint);
         }
